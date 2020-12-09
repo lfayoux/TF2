@@ -21,10 +21,15 @@ if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 	if [ ! -z "$SOURCEMOD_VERSION" ]; then
 		LATESTSM=$(wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/sourcemod-latest-linux)
 		wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+
+        if [ ! -z "$USE_RGL" ]; then
+            wget -qO- https://github.com/RGLgg/server-resources-updater/releases/latest/download/server-resources-updater.zip | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+        fi
 	fi
 
 	# Change hostname on first launch (you can comment this out if it has done it's purpose)
 	sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
+    sed -i -e 's/{{SERVER_RCON_PW}}/'"${SRCDS_RCONPW}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 fi
 
 # Believe it or not, if you don't do this srcds_run shits itself
