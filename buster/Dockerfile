@@ -9,6 +9,8 @@ ENV STEAMAPPID 232250
 ENV STEAMAPP tf
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/lfayoux/TF2
+ENV METAMOD_VERSION 1.10
+ENV SOURCEMOD_VERSION 1.10
 
 # Run Steamcmd and install TF2
 # Create autoupdate config
@@ -17,6 +19,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
+		unzip \
 		ca-certificates=20190110 \
 		lib32z1=1:1.2.11.dfsg-1 \
 		libncurses5:i386=6.1+20181013-2+deb10u2 \
@@ -50,7 +53,7 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
 	SRCDS_STARTMAP="ctf_2fort" \
-	SRCDS_REGION=3 \
+	SRCDS_REGION=-1 \
         SRCDS_HOSTNAME="New \"${STEAMAPP}\" Server" \
         SRCDS_WORKSHOP_START_MAP=0 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \

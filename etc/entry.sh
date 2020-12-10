@@ -23,7 +23,7 @@ if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 		wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
 
         if [ ! -z "$USE_RGL" ]; then
-            wget -qO- https://github.com/RGLgg/server-resources-updater/releases/latest/download/server-resources-updater.zip | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+            wget -qO- https://github.com/RGLgg/server-resources-updater/releases/latest/download/server-resources-updater.zip | unzip -o -d "${STEAMAPPDIR}/${STEAMAPP}"
         fi
 	fi
 
